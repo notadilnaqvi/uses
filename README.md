@@ -12,3 +12,7 @@
 🖊️ &nbsp; **Editor:** Vim with tmux | VS Code
 
 ⚡ &nbsp; **Terminal:** Alacritty with Bash
+
+<br/>
+
+🚧 &nbsp; *This README is under construction* &nbsp; 🚧
