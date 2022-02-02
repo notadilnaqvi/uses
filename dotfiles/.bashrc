@@ -2,7 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -46,18 +45,11 @@ esac
 # should be on the output of commands, not on the prompt
 #force_color_prompt=yes
 
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
 
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ '
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u \[\033[01;34m\]\w \[\e[35m\]$(parse_git_branch)\[\e[00m\]\n\$ '
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
@@ -85,7 +77,7 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
+alias ll='ls -alFh'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -113,29 +105,41 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#DENO
-export DENO_INSTALL="/home/adil/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
+NOCOLOR='\033[0m'
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+LIGHTGRAY='\033[0;37m'
+DARKGRAY='\033[1;30m'
+LIGHTRED='\033[1;31m'
+LIGHTGREEN='\033[1;32m'
+YELLOW='\033[1;33m'
+LIGHTBLUE='\033[1;34m'
+LIGHTPURPLE='\033[1;35m'
+LIGHTCYAN='\033[1;36m'
+WHITE='\033[1;37m'
 
-# CUSTOM CONfIG
+# custom
 alias :q="exit"
 alias ..="cd .."
 alias mv="mv -iv"
 alias cp="cp -iv"
-alias cls="clear"
-alias cla="clear && history -c"
 alias mkdir="mkdir -pv"
-alias clh="cat /dev/null > ~/.bash_history && history -c && echo 'Cleared .bash_history!'"
-
+alias vim="nvim"
 alias eb="vim ~/.bashrc"
-alias et="vim ~/.tmux.conf"
-alias ev="vim ~/.config/nvim/init.vim"
 alias ea="vim ~/.config/alacritty/alacritty.yml"
+alias gpat="cat ~/code/.gpat.txt | clipboard && echo -e \"${GREEN}Token copied to clipboard\""
+alias myip="ifconfig | grep 192 | awk '{print \$2}'"
+alias share="python3 -m http.server"
+alias ave="source venv/bin/activate"
 
-alias gh="cd ~" #MIGHT CONFLICT WITH GITHUB CLI
-
-alias mu="mocp"
-
-#RUN TMUX ON BASH STARTUP
-[[ $TERM != "screen" ]] && exec tmux
-neofetch
+# Kill process running on given port
+kp () {
+  for port in "$@"
+  do
+  lsof -i :"$port" -Fp | grep p | cut -d "p" -f 2 | xargs kill -9 && echo -e "Killed port ${BLUE}:${port}"
+  done
+}
