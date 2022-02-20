@@ -1,12 +1,3 @@
-"PLUGINS
-call plug#begin('~/.config/nvim/plugged')
-Plug 'preservim/nerdtree'
-Plug 'tpope/vim-surround'
-Plug 'scrooloose/syntastic'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
-call plug#end()
-
 "INDENTATION
 set autoindent
 set expandtab
@@ -20,10 +11,10 @@ set hlsearch
 set ignorecase
 set incsearch
 set smartcase
- 
+
 "PERFORMANCE
 set lazyredraw
- 
+
 "TEXT RENDERING
 set encoding=utf-8
 set linebreak
@@ -43,3 +34,6 @@ set background=dark
 "MISC
 set noswapfile
 
+"KEY BINDINGS
+inoremap jk <ESC>
+inoremap kj <ESC>
