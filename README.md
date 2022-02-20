@@ -5,13 +5,13 @@
 
 ## My coding setup
 
-💻 &nbsp; **Machine**: Dell Inspiron 3542 | 4GB RAM | Intel i3-4030U (4) @ 1.9GHz *(I know, it's sad)*
+💻 &nbsp; **Machine**: Dell Inspiron 15 3000 - Intel Core i7 (10th Gen) - 512 GB NVME - 16 GB DDR4
 
-⚙️ &nbsp; **OS:** Ubuntu 20.04.1 LTS x86_6
+⚙️ &nbsp; **OS:** Ubuntu 20.04 LTS with Qogir Dark theme
 
-🖊️ &nbsp; **Editor:** Vim with tmux | VS Code
+🖊️ &nbsp; **Editor:** WebStorm & PyCharm with VSCode key bindings
 
-⚡ &nbsp; **Terminal:** Alacritty with Bash
+⚡ &nbsp; **Terminal:** Alacritty + Tmux + Bash
 
 <br/>
 
