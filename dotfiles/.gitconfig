@@ -1,0 +1,9 @@
+[user]
+        email = notadilnaqvi@gmail.com
+        name = Adil Naqvi
+[status]
+        submoduleSummary = true
+[alias]
+        l = log --graph --pretty=format:'%Cred%h%Creset - %Cgreen%ae %C(blue)(%cr)%Creset %s' --abbrev-commit
+[core]
+        ignorecase = false
